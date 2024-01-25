@@ -1,21 +1,41 @@
 'use strict';
 
-const numberOfFilms = prompt('Сколько фильмов вы уже посмотрели?', '');
+if (1) {
+	console.log('okay');
+} else  {
+	console.log('error');
+}
 
-const personalMovieDB = {
-	count: numberOfFilms,
-	movies: {},
-	actors: {},
-	genres: [],
-	privat: false
-};
 
-const latestFilm = prompt('Один из последних просмотренных фильмов', ''), 
-	rating = prompt('На сколько оцените его?', ''), 
-	favoriteFilm = prompt('Любимый фильм', ''), 
-	favoriteRating = prompt('Его оценка', '');
+const num1 = 50;
 
-personalMovieDB.movies[latestFilm] = rating;
-personalMovieDB.movies[favoriteFilm] = favoriteRating;
+if (num1 <= 49 ) {
+	console.log('error');
+} else if (num1 > 100) {
+	console.log('слишком много');
+} else {
+	console.log('Отличная сумма');
+}
 
-console.log(personalMovieDB);
+
+
+(num1 === 50) ? console.log('Отличная сумма') : console.log('error');
+
+
+
+const num3 = 51;
+
+switch (num3) {
+case 49:
+	console.log('неверно');
+	break;		
+case 100:
+	console.log('неверно');
+	break;
+case 50:
+	console.log('В точку');
+	break;
+default:
+	console.log('не в этот раз');
+	break;
+}
