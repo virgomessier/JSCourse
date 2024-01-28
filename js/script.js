@@ -1,75 +1,102 @@
 'use strict';
-let num = 20;
 
-function showFirstMessage(text) {
-	let num = 10;
-	console.log(text);
-	console.log(num);
+let usdCurr = 92;
+let gelCurr = 2.7;
+let idrCurr = 15600;
+
+const discount = 0.9;
+
+function convert(amount , curr) {
+	console.log(amount * curr); 
 }
 
-showFirstMessage('Hello World');
-
-console.log(num);
-
-function calc(a, b) {
-	return (a + b);
-}
-console.log(calc(4, 3));
-console.log(calc(5, 6));
-console.log(calc(10, 6));
-
-
-function ret() {
-	let num = 50;
-	return num;
-}
-const anotherNum = ret();
-console.log(anotherNum);
-
-
-//Function Expression
-const logger = function() {
-	console.log('hello');
-};
-logger();
-
-const calcNew  = (a, b) => a + b;
-
-const calcNew2 = a => a + b;
-
-const calcNew3 = (a, b) => {
-	console.log('1');
-	return a + b;
-};
-
-
-// Замыкание функции
-function createCounter() {
-	let counter = 0;
-	const myFunction = function() {
-		counter = counter + 1;
-		return counter;
-	};
-	return myFunction;
-}
-const increment = createCounter();
-const c1 = increment();
-const c2 = increment();
-const c3 = increment();
-console.log('example increment', c1, c2, c3);
+convert(500, usdCurr);
+convert(500, gelCurr);
+convert(500, idrCurr);
 
 
 
+let usdCurr = 92;
+let gelCurr = 2.7;
+let idrCurr = 15600;
 
-function preBind() {
-	const person1 = {name: 'Михаил', age: 22, job: 'Frontend'};
-	const person2 = {name: 'Елена', age: 19, job: 'SMM'};
-	return function() {
-		console.log(`Person: ${person1.name}, ${person1.age}, ${person1.job}`);
-		console.log(`Person: ${person2.name}, ${person2.age}, ${person2.job}`);
-	};
+const discount = 0.9;
+
+function convert(amount , curr) {
+	return amount * curr;
+
 }
 
-const bind = preBind();
+function promotion(result) {
+	console.log(result * discount);
+}
 
-bind();
+const res = convert(500, usdCurr);
+promotion(res);
+convert(500, gelCurr);
+convert(500, idrCurr);
+
+
+
+function test() {
+	for (let i = 0; i < 5; i++) {
+		console.log(i);
+		if (i === 3) {
+			return;
+		}
+	}
+	console.log('done');
+}
+test();
+
+function doNothing() {}
+
+console.log(doNothing() === undefined);
+
+
+function sayHello(name) {
+	return 'Привет, ' + name; 
+}
+console.log(sayHello('Вера'));
+
+// Моя первая попытка
+// function returnNeighboringNumbers(num) { 
+// 	for (let i = 1; i < 10; i++) {
+// 		for (let j = num; j < 10; j++) {
+// 			let arr = [num - i, num, num + 1];
+// 			if (j === 9) {
+// 				return arr;
+// 			}
+// 		}
+// 	}
+// }
+
+// const result = returnNeighboringNumbers(6);
+// console.log(result);
+
+// Переосмысление первой попытки
+function returnNeighboringNumbers(num) { 
+	const arr = [num - 1, num, num + 1];
+	return arr;
+}
+
+
+function getMathResult(mainNum, repeatNum) {
+	if (typeof(repeatNum) !== 'number' || repeatNum <= 0) {
+		return mainNum;
+	}
+
+	let str = '';
+
+	for (let i = 1; i <= repeatNum; i++ ) {
+		if (i === repeatNum) {
+			str += `${mainNum * i}`;
+		} else {
+			str += `${mainNum * i}---`;
+		}
+	}
+	return str;
+}
+
+
+console.log(getMathResult(5, 3));
