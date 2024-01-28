@@ -1,72 +1,75 @@
 'use strict';
+let num = 20;
+
+function showFirstMessage(text) {
+	let num = 10;
+	console.log(text);
+	console.log(num);
+}
+
+showFirstMessage('Hello World');
+
+console.log(num);
+
+function calc(a, b) {
+	return (a + b);
+}
+console.log(calc(4, 3));
+console.log(calc(5, 6));
+console.log(calc(10, 6));
 
 
-/* Задание на урок:
+function ret() {
+	let num = 50;
+	return num;
+}
+const anotherNum = ret();
+console.log(anotherNum);
 
-1) Автоматизировать вопросы пользователю про фильмы при помощи цикла
 
-2) Сделать так, чтобы пользователь не мог оставить ответ в виде пустой строки,
-отменить ответ или ввести название фильма длинее, чем 50 символов. Если это происходит - 
-возвращаем пользователя к вопросам опять
+//Function Expression
+const logger = function() {
+	console.log('hello');
+};
+logger();
 
-3) При помощи условий проверить  personalMovieDB.count, и если он меньше 10 - вывести сообщение
-"Просмотрено довольно мало фильмов", если от 10 до 30 - "Вы классический зритель", а если больше - 
-"Вы киноман". А если не подошло ни к одному варианту - "Произошла ошибка"
+const calcNew  = (a, b) => a + b;
 
-4) Потренироваться и переписать цикл еще двумя способами*/
+const calcNew2 = a => a + b;
 
-const numberOfFilms = +prompt('Сколько фильмов уже посмотрели?', '');
-const personalMovieDB = {
-	count: numberOfFilms,
-	movies: {},
-	actors: {},
-	genres: [],
-	privat: false
+const calcNew3 = (a, b) => {
+	console.log('1');
+	return a + b;
 };
 
-// первый способ записи
-// for (let i = 0; i < 2; i++) {
-// 	const a = prompt('Один из последних просмотренных фильмов?', ''),
-// 		b = prompt('На сколько оцените его', '');
-// 	if (a != null && b != null && a != '' && b != '' && a.length < 50 && b.length < 50) {
-// 		personalMovieDB.movies[a] = b;
-// 		console.log('done');
-// 	} else {
-// 		console.log('error');
-// 		i--;
-// 	}
-// }
-// console.log(personalMovieDB);
 
-// второй спобос записи наоборот
-for (let i = 0; i < 2; i++) {
-	const a = prompt('Один из последних просмотренных фильмов?', ''),
-		b = prompt('На сколько оцените его', '');
-	if (a == null || b == null || a == '' || b == '' || a.length > 50 || b.length > 50) {
-		console.log('error');
-		i--;
-	} else {
-		personalMovieDB.movies[a] = b;
-		console.log('done');
-	}
+// Замыкание функции
+function createCounter() {
+	let counter = 0;
+	const myFunction = function() {
+		counter = counter + 1;
+		return counter;
+	};
+	return myFunction;
+}
+const increment = createCounter();
+const c1 = increment();
+const c2 = increment();
+const c3 = increment();
+console.log('example increment', c1, c2, c3);
+
+
+
+
+function preBind() {
+	const person1 = {name: 'Михаил', age: 22, job: 'Frontend'};
+	const person2 = {name: 'Елена', age: 19, job: 'SMM'};
+	return function() {
+		console.log(`Person: ${person1.name}, ${person1.age}, ${person1.job}`);
+		console.log(`Person: ${person2.name}, ${person2.age}, ${person2.job}`);
+	};
 }
 
-// третий вариант записи 
-// for (let i = 0; i < 2; i++) {
-// 	const a = prompt('Один из последних просмотренных фильмов?', ''),
-// 		b = prompt('На сколько оцените его', '');
-// 	(a != null && b != null && a != '' && b != '' && a.length < 50 && b.length < 50) 
-// 		? personalMovieDB.movies[a] = b
-// 		: i--;
-// }
+const bind = preBind();
 
-if (personalMovieDB.count < 10) {
-	console.log('Просмотрено довольно мало фильмов');
-} else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30) {
-	console.log('Вы классический зритель');
-} else if (personalMovieDB.count >= 30) {
-	console.log('Вы киноман');
-}	else {
-	console.log('Произошла ошибка');
-}
-console.log(personalMovieDB);
+bind();
